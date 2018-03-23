@@ -39,7 +39,8 @@ registerUser() {
   this.fire.auth.createUserWithEmailAndPassword(this.user.value, this.password.value)
   .then(data =>{
    console.log('got data', data);
-   this.alert("Sucess! You are logged in");
+
+   this.alert("Sucess! You are registered!");
    this.navCtrl.setRoot( HomePage );
   })
   .catch(error =>{
