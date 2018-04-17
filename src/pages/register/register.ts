@@ -1,45 +1,33 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
+import {Component} from "@angular/core";
+import {NavController} from "ionic-angular";
+import {LoginPage} from "../login/login";
+import {MainTabsPage} from "../main-tabs/main-tabs";
 
-/**
- * Generated class for the RegisterPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
+
+/*
+ Generated class for the LoginPage page.
+
+ See http://ionicframework.com/docs/v2/components/#navigation for more info on
+ Ionic pages and navigation.
  */
-
-@IonicPage()
 @Component({
   selector: 'page-register',
-  templateUrl: 'register.html',
+  templateUrl: 'register.html'
 })
 export class RegisterPage {
 
-  @ViewChild('username') user;
-  @ViewChild('password') password;
-
-  constructor(private fire: AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public nav: NavController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad RegisterPage');
+  // sign up
+  signUp() {
+    // add your sign up code here
+    // redirect to home page
+    this.nav.setRoot(MainTabsPage);
   }
 
-
-  
-registerUser() {
-  this.fire.auth.createUserWithEmailAndPassword(this.user.value, this.password.value)
-  .then(data =>{
-   console.log('got data', data);
-
-  })
-
-  .catch(error =>{
-    console.log('got an error', error);
-  });
-
-  console.log("Would register user with ", this.user.value, this.password.value)
-}
-
+  // go to login page
+  login() {
+    this.nav.setRoot(LoginPage);
+  }
 }

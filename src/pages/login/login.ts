@@ -1,55 +1,33 @@
-import { Component, ViewChild } from '@angular/core';
-import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-import { AngularFireAuth } from 'angularfire2/auth';
-import { HomePage } from '../home/home';
+import {Component} from "@angular/core";
+import {NavController} from "ionic-angular";
+import {RegisterPage} from "../register/register";
+import {MainTabsPage} from "../main-tabs/main-tabs";
 
 
-/**
- * Generated class for the LoginPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
+/*
+ Generated class for the LoginPage page.
+
+ See http://ionicframework.com/docs/v2/components/#navigation for more info on
+ Ionic pages and navigation.
  */
-
-@IonicPage()
 @Component({
   selector: 'page-login',
-  templateUrl: 'login.html',
+  templateUrl: 'login.html'
 })
 export class LoginPage {
 
-  @ViewChild('username') user;
-  @ViewChild('password') password;
-
-  constructor(private alertCtrl: AlertController, private fire:AngularFireAuth, public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public nav: NavController) {
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad LoginPage');
+  // login
+  login() {
+    // add your login code here
+    // redirect to home page
+    this.nav.setRoot(MainTabsPage);
   }
 
-alert(message: string) {
-this.alertCtrl.create({
-  title: 'Info!',
-  subTitle: message,
-  buttons: ['OK']
-}). present();
-}
-
-
-signInUser() {
-  this.fire.auth.signInWithEmailAndPassword(this.user.value, this.password.value)
-  .then( data => {
-    console.log('got some data',this.fire.auth.currentUser);
-    this.alert("Sucess! You are logged in");
-    this.navCtrl.setRoot( HomePage );
-    // user logged in
-  }) 
-  .catch(error => {
-    console.log('got an error', error);
-    this.alert(error.message);
-  })
-  console.log('Would sign in with', this.user.value, this.password.value);
-}
-
+  // go to signup page
+  signUp() {
+    this.nav.setRoot(RegisterPage);
+  }
 }
